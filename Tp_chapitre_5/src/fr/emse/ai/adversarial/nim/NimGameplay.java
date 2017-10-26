@@ -10,7 +10,7 @@ import java.util.Scanner;
 public class NimGameplay {
 
     public static void main(String[] args) {
-        NimGame game = new NimGame(20);
+        NimGame game = new NimGame(50);
         MinimaxSearch<List<Integer>, Integer, Integer> minimaxSearch = MinimaxSearch.createFor(game);
         AlphaBetaSearch<List<Integer>, Integer, Integer> alphabetaSearch = AlphaBetaSearch.createFor(game);
         IterativeDeepeningAlphaBetaSearch<List<Integer>, Integer, Integer> iterativeDeepeningAlphaBetaSearch = IterativeDeepeningAlphaBetaSearch.createFor(game, -1, 1, 10);
@@ -30,11 +30,11 @@ public class NimGameplay {
             } else {
                 //machine
                 System.out.println("Machine player, what is your action?");
-                action = minimaxSearch.makeDecision(state);
-                System.out.println("Metrics for Minimax : " + minimaxSearch.getMetrics());
-                alphabetaSearch.makeDecision(state);
-                System.out.println("Metrics for AlphaBeta : " + alphabetaSearch.getMetrics());
-                iterativeDeepeningAlphaBetaSearch.makeDecision(state);
+                //action = minimaxSearch.makeDecision(state);
+                //System.out.println("Metrics for Minimax : " + minimaxSearch.getMetrics());
+                //alphabetaSearch.makeDecision(state);
+                //System.out.println("Metrics for AlphaBeta : " + alphabetaSearch.getMetrics());
+                action = iterativeDeepeningAlphaBetaSearch.makeDecision(state);
                 System.out.println("Metrics for IDAlphaBetaSearch : " + iterativeDeepeningAlphaBetaSearch.getMetrics());
             }
             System.out.println("Chosen action is " + action);
