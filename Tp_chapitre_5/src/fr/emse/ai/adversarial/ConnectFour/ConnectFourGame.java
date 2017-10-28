@@ -35,7 +35,8 @@ public class ConnectFourGame implements Game<ArrayList<ArrayList<Boolean>>, Inte
                 count++;
             }
         }
-        if (count==49){
+        if (isFull(state) && !isWinning(state)){
+            //si la grille est pleine et personne n'a gagné
             return 2;
         }else{
             return count % 2;
@@ -68,7 +69,10 @@ public class ConnectFourGame implements Game<ArrayList<ArrayList<Boolean>>, Inte
 
     @Override
     public boolean isTerminal(ArrayList<ArrayList<Boolean>> state) {
-        boolean ligne_vide =false;
+        return isFull(state) || isWinning(state);
+    }
+
+    private boolean isWinning(ArrayList<ArrayList<Boolean>> state) {
         for (int i = 0; i < 7; i++) {
             int count =0;
             for (int j = 0; j < state.get(i).size(); j++) {
@@ -86,6 +90,13 @@ public class ConnectFourGame implements Game<ArrayList<ArrayList<Boolean>>, Inte
                     count=0;
                 }
             }
+        }
+        return false;
+    }
+
+    private boolean isFull(ArrayList<ArrayList<Boolean>> state) {
+        boolean ligne_vide =false;
+        for (int i = 0; i < 7; i++) {
             if (state.get(i).size()<7){
                 ligne_vide=true;
             }
