@@ -81,8 +81,13 @@ public class ConnectFourGameplay {
         System.out.println("_________________");
         if (game.getPlayer(state) == 0)
             System.out.println("Machine wins!");
-        else
-            System.out.println("Human wins!");
+        else {
+            if (game.getPlayer(state) == 2){
+                System.out.println("Draw");
+            }else{
+                System.out.println("Human wins!");
+            }
 
+        }
     }
 }

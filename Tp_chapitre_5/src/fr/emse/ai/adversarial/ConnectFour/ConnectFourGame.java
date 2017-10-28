@@ -35,7 +35,12 @@ public class ConnectFourGame implements Game<ArrayList<ArrayList<Boolean>>, Inte
                 count++;
             }
         }
-        return count % 2;
+        if (count==49){
+            return 2;
+        }else{
+            return count % 2;
+        }
+
     }
 
     @Override
