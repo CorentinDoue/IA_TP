@@ -65,7 +65,7 @@ public class IterativeDeepeningAlphaBetaSearch<STATE, ACTION, PLAYER>
 		StringBuffer logText = null;
 		expandedNodes = 0;
 		maxDepth = 0;
-		currDepthLimit = 0;
+		currDepthLimit = 1;
 		long startTime = System.currentTimeMillis();
 		boolean exit = false;
 		do {
@@ -199,7 +199,7 @@ public class IterativeDeepeningAlphaBetaSearch<STATE, ACTION, PLAYER>
 			return game.getUtility(state, player);
 		} else {
 			maxDepthReached = true;
-			return (utilMin + utilMax) / 2;
+			return game.getUtility(state, player);
 		}
 	}
 

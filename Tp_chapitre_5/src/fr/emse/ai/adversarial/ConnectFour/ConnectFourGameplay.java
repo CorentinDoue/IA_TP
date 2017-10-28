@@ -15,7 +15,7 @@ public class ConnectFourGameplay {
         ConnectFourGame game = new ConnectFourGame();
         MinimaxSearch<ArrayList<ArrayList<Boolean>>, Integer, Integer> minimaxSearch = MinimaxSearch.createFor(game);
         AlphaBetaSearch<ArrayList<ArrayList<Boolean>>, Integer, Integer> alphabetaSearch = AlphaBetaSearch.createFor(game);
-        IterativeDeepeningAlphaBetaSearch<ArrayList<ArrayList<Boolean>>, Integer, Integer> iterativeDeepeningAlphaBetaSearch = IterativeDeepeningAlphaBetaSearch.createFor(game, -1, 1, 10);
+        IterativeDeepeningAlphaBetaSearch<ArrayList<ArrayList<Boolean>>, Integer, Integer> iterativeDeepeningAlphaBetaSearch = IterativeDeepeningAlphaBetaSearch.createFor(game, -10, 10, 10);
         ArrayList<ArrayList<Boolean>> state = game.getInitialState();
         while (!game.isTerminal(state)) {
             System.out.println("======================");
