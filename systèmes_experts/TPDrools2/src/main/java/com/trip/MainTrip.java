@@ -13,14 +13,14 @@ public class MainTrip {
 		try {
 		    KieServices ks = KieServices.Factory.get();
     	    KieContainer kContainer = ks.getKieClasspathContainer();
-        	KieSession kSession = kContainer.newKieSession("ksession-trip");
+        	KieSession kSession = kContainer.newKieSession("ksession-rulesTrip");
         	
         	boolean musee = true, accueillant = false, traditionCulinaire = false, traditionFolklorique = false,  monuments = true, vegetationAbondante = false;  
         	int etoile = 3;
         	String ville = "SE", typeVille = "ville ancienne",  region = null, geographie = null, parc = "verdoyant", architecture = "avenues larges";
         	
         	
-        	DescriptionActivite da = new DescriptionActivite(ville, etoile, musee, null);
+        	DescriptionActivite da = new DescriptionActivite(ville, etoile, musee, "Très bon");
         	DescriptionHabitant dh = new DescriptionHabitant(ville,accueillant , traditionCulinaire, traditionFolklorique);
         	DescriptionVille dv = new DescriptionVille(ville, typeVille, monuments, vegetationAbondante, region, geographie, parc, architecture );
 			

@@ -18,15 +18,19 @@ public class Cube {
 	public Cube(int valeur, String identifiant) {
 		this(valeur, identifiant, "sol");
 	}
+
 	public String getIdentifiant() {
 		return identifiant;
 	}
+
 	public void setIdentifiant(String identifiant) {
 		this.identifiant = identifiant;
 	}
+
 	public String getPoseSur() {
 		return poseSur;
 	}
+
 	public void setPoseSur(String poseSur) {
 		this.poseSur = poseSur;
 	}
@@ -40,7 +44,7 @@ public class Cube {
 	}
 
 	public void affiche(){
-		System.out.println(" le Cube " + getIdentifiant() + " est posé sur " + getPoseSur());
+		System.out.println(" le Cube " + getIdentifiant() + " est posÃ© sur " + getPoseSur());
 	}
 	
 	

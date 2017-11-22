@@ -8,7 +8,7 @@ public class DescriptionVille extends Description{
 	
 	
 	
-	// belle, historique, méritant détour, ancienne, 
+	// belle, historique, mÃ©ritant dÃ©tour, ancienne,
 	private String typeVille;  
 	private boolean monuments;
 	private boolean vegetationAbondante;

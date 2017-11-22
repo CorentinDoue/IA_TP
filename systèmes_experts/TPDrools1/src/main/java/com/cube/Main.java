@@ -25,14 +25,17 @@ public class Main {
 			
 	         for (Object fc : kSession.getObjects()){	        
 	            	if (fc.getClass().equals(com.cube.Cube.class))
-	            		System.out.println(((Cube)fc).getPoseSur());
+						((Cube)fc).affiche();
 	            }
 	
 	         
 	         kSession.fireAllRules();
-			
-			
-			
+
+
+			for (Object fc : kSession.getObjects()){
+				if (fc.getClass().equals(com.cube.Cube.class))
+					((Cube)fc).affiche();
+			}
 			
 		}  catch (Throwable t) {
 			// TODO Auto-generated catch block

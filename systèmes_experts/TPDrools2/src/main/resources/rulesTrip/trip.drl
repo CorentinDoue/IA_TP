@@ -1,17 +1,51 @@
 import com.trip.*
  
-//rule "poser_sur"
-//	salience 10
-//	when
-// 		$cube : Cube ( $v : valeur, $id: identifiant)  // poser id sur id2
-// 		Cube ($v2 : valeur && valeur > $v, $id2 : identifiant)
-// 		not Cube( valeur > $v && < $v2)
-//       	not Cube (poseSur == $id)
-//  		not Cube (poseSur == $id2)
-//	then
-//		System.out.println("ma r�gle pose sur");
-//  		modify($cube){setPoseSur ($id2)};  // modify($customer) { setDiscount( 0.1 ) };
-//  	end
+rule "R1"
+    when
+        $ville: DescriptionVille(typeVille.contains("belle"))
+        DescriptionActivite(restaurant.contains("Très bon"));
+    then
+        insert(new Avis($ville.getNomVille(),"méritant le détour"));
+end
+
+rule "R2"
+    when
+        $ville: DescriptionVille(typeVille.contains("historique"))
+    then
+        insert(new Avis($ville.getNomVille(),"méritant le détour"));
+end
+
+rule "R3"
+    when
+        $ville: DescriptionHabitant(accueillant && traditionFolklorique)
+    then
+        insert(new Avis($ville.getNomVille(),"méritant le détour"));
+end
+
+rule "R4"
+    when
+        $ville: DescriptionVille(monuments && vegetationAbondante)
+    then
+        insert(new Avis($ville.getNomVille(),"méritant le détour"));
+end
+
+rule "R5" lock-on-active
+    when
+        $a: DescriptionActivite($b : nomVille)
+        DescriptionHabitant(nomVille == $b && traditionCulinaire)
+    then
+        modify($a){setRestaurant("bon restaurant")};
+end
+
+rule "R6" lock-on-active
+    when
+        $b: DescriptionActivite(nombreEtoiles == 3)
+    then
+        System.out.println("Infinite");
+        $b.setRestaurant("Très bon restaurant");
+        update($b);
+end
+
 
 
  

@@ -13,7 +13,7 @@ public class DescriptionActivite extends Description {
 	private int nombreEtoiles;
 	
 	private boolean musees;
-	// 3Etoiles, bon, trèsBon, 3 toques;
+	// 3Etoiles, bon, trÃ©sBon, 3 toques;
 	private String restaurant;
 	
 	public boolean isMusees() {
