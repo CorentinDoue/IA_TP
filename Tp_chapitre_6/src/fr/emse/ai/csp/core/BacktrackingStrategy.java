@@ -1,5 +1,11 @@
 package fr.emse.ai.csp.core;
 
+import fr.emse.ai.util.Pair;
+
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
+
 /**
  * Artificial Intelligence A Modern Approach (3rd Ed.): Figure 6.5, Page 215.<br>
  * <br>
@@ -39,6 +45,36 @@ package fr.emse.ai.csp.core;
  * @author Ruediger Lunde
  */
 public class BacktrackingStrategy extends SolutionStrategy {
+    boolean allowAC3=false;
+    int variableHeuristic;
+    boolean allowLCV=false;
+
+
+    public BacktrackingStrategy(){
+        variableHeuristic=0;
+    }
+
+    public BacktrackingStrategy(boolean allowAC3){
+        this.allowAC3=allowAC3;
+        variableHeuristic=0;
+
+    }
+
+    public BacktrackingStrategy(int i){
+        variableHeuristic=i;
+    }
+
+    public BacktrackingStrategy(boolean allowAC3, int i){
+        variableHeuristic=i;
+        this.allowAC3=allowAC3;
+
+    }
+
+    public BacktrackingStrategy(boolean allowAC3, int i, boolean allowLCV){
+        variableHeuristic=i;
+        this.allowAC3=allowAC3;
+        this.allowLCV=allowLCV;
+    }
 
     public Assignment solve(CSP csp) {
         return recursiveBackTrackingSearch(csp, new Assignment());
@@ -48,8 +84,7 @@ public class BacktrackingStrategy extends SolutionStrategy {
      * Template method, which can be configured by overriding the three
      * primitive operations below.
      */
-    private Assignment recursiveBackTrackingSearch(CSP csp,
-                                                   Assignment assignment) {
+    private Assignment recursiveBackTrackingSearch(CSP csp,Assignment assignment) {
         Assignment result = null;
         if (assignment.isComplete(csp.getVariables())) {
             result = assignment;
@@ -57,7 +92,6 @@ public class BacktrackingStrategy extends SolutionStrategy {
             Variable var = selectUnassignedVariable(assignment, csp);
             for (Object value : orderDomainValues(var, assignment, csp)) {
                 assignment.setAssignment(var, value);
-                fireStateChanged(assignment, csp);
                 if (assignment.isConsistent(csp.getConstraints(var))) {
                     DomainRestoreInfo info = inference(var, assignment, csp);
                     if (!info.isEmpty())
@@ -81,6 +115,17 @@ public class BacktrackingStrategy extends SolutionStrategy {
      * provided by the CSP.
      */
     protected Variable selectUnassignedVariable(Assignment assignment, CSP csp) {
+        if (variableHeuristic==1) {
+            return MRV(assignment, csp);
+        }else if (variableHeuristic==2){
+            return MRV_DH(assignment, csp);
+        }else{
+            return firstInList(assignment, csp);
+        }
+    }
+
+
+    private Variable firstInList(Assignment assignment, CSP csp){
         for (Variable var : csp.getVariables()) {
             if (!(assignment.hasAssignmentFor(var)))
                 return var;
@@ -88,14 +133,97 @@ public class BacktrackingStrategy extends SolutionStrategy {
         return null;
     }
 
+    private Variable MRV(Assignment assignment, CSP csp) {
+        Variable minvar = null;
+        Double minvalue=Double.POSITIVE_INFINITY;;
+        Domain dom;
+        boolean allAssigned=true;
+        for (Variable var : csp.getVariables()) {
+            if (!(assignment.hasAssignmentFor(var))) {
+                dom = csp.getDomain(var);
+                if (dom.size() < minvalue) {
+                    minvar=var;
+                    minvalue=(double)dom.size();
+                }
+                allAssigned=false;
+            }
+        }
+        if (allAssigned){
+            return null;
+        }else{
+            return minvar;
+        }
+    }
+
+    private Variable MRV_DH(Assignment assignment, CSP csp) {
+        ArrayList<Variable> minvars = new ArrayList<>();
+        Double minvalue=Double.POSITIVE_INFINITY;
+        int maxconstraint = 0;
+        Domain dom;
+        List<Constraint> constraints;
+        Variable maxvar =null;
+        boolean allAssigned=true;
+        for (Variable var : csp.getVariables()) {
+            if (!(assignment.hasAssignmentFor(var))) {
+                dom = csp.getDomain(var);
+                if (dom.size() < minvalue) {
+                    minvars.clear();
+                    minvars.add(var);
+                    minvalue=(double)dom.size();
+                }else if ((double)dom.size() == minvalue){
+                    minvars.add(var);
+                }
+                allAssigned=false;
+            }
+        }
+        if (allAssigned){
+            return null;
+        }else{
+            for (Variable var: minvars) {
+                constraints = csp.getConstraints(var);
+                if (constraints.size()>maxconstraint){
+                    maxvar=var;
+                    maxconstraint=constraints.size();
+                }
+            }
+            return maxvar;
+        }
+    }
+
     /**
      * Primitive operation, ordering the domain values of the specified
      * variable. This default implementation just takes the default order
      * provided by the CSP.
      */
-    protected Iterable<?> orderDomainValues(Variable var,
-                                            Assignment assignment, CSP csp) {
-        return csp.getDomain(var);
+    protected Iterable<?> orderDomainValues(Variable var, Assignment assignment, CSP csp) {
+        if (allowLCV){
+            int sum;
+            List<Pair<Object,Integer>> sums = new ArrayList<>();
+            for (Object value:csp.getDomain(var)) {
+                sum=0;
+                Assignment assignment2 = new Assignment();
+                assignment2.setAssignment(var, value);
+                for (Constraint constraint : csp.getConstraints(var)) {
+                    Variable neighbor = csp.getNeighbor(var, constraint);
+                    for (Object nValue : csp.getDomain(neighbor)) {
+                        assignment2.setAssignment(neighbor, nValue);
+                        if (!constraint.isSatisfiedWith(assignment)) {
+                            ++sum;
+                        }
+                    }
+                }
+                sums.add(new Pair(value,sum));
+            }
+            List<Object> values = new ArrayList<>();
+            Comparator<Pair> comparator = (o1, o2) -> (int)o2.getSecond()-(int)o1.getSecond();
+            sums.sort(comparator);
+            for (Pair<Object,Integer> pair:sums) {
+                values.add(pair.getFirst());
+            }
+            return values;
+        }else{
+            return csp.getDomain(var);
+        }
     }
 
     /**
@@ -108,8 +236,13 @@ public class BacktrackingStrategy extends SolutionStrategy {
      * have been performed, (2) possibly inferred empty domains , and
      * (3) how to restore the domains.
      */
-    protected DomainRestoreInfo inference(Variable var, Assignment assignment,
-                                          CSP csp) {
-        return new DomainRestoreInfo().compactify();
+    protected DomainRestoreInfo inference(Variable var, Assignment assignment, CSP csp) {
+        if (allowAC3) {
+            AC3Strategy ac3 = new AC3Strategy();
+            Object value = assignment.getAssignment(var);
+            return ac3.reduceDomains(var, value, csp);
+        }else {
+            return new DomainRestoreInfo().compactify();
+        }
     }
 }

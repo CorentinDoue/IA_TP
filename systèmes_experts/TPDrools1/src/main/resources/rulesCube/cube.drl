@@ -1,0 +1,17 @@
+import com.cube.Cube
+ 
+rule "poser_sur"
+	salience 10
+	when
+ 		$cube : Cube ( $v : valeur, $id: identifiant)  // poser id sur id2
+ 		Cube ($v2 : valeur && valeur > $v, $id2 : identifiant)
+ 		not Cube( valeur > $v && < $v2)
+       	not Cube (poseSur == $id)
+  		not Cube (poseSur == $id2)
+	then
+		System.out.println("ma règle pose sur");
+  		modify($cube){setPoseSur ($id2)};  // modify($customer) { setDiscount( 0.1 ) };
+  	end
+
+
+ 

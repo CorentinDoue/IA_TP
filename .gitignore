@@ -2,3 +2,9 @@
 workspace.xml
 ./Tp_chapitre_5/.idea
 ./Tp_chapitre_3/.idea
+
+/out/
+/out
+/.metadata/
+/.idea/
+out/
