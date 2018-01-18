@@ -1,3 +1,5 @@
+package com.trip
+
 import com.trip.*
  
 rule "R1"

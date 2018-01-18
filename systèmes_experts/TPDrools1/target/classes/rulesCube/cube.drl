@@ -5,8 +5,8 @@ rule "poser_sur"
 	when
  		$cube : Cube ( $v : valeur, $id: identifiant)  // poser id sur id2
  		Cube ($v2 : valeur && valeur > $v, $id2 : identifiant)
- 		not Cube( valeur > $v && < $v2)
-       	not Cube (poseSur == $id)
+// 		not Cube( valeur > $v && < $v2)
+      	not Cube (poseSur == $id)
   		not Cube (poseSur == $id2)
 	then
 		System.out.println("ma régle pose sur");

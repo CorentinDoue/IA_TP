@@ -1,0 +1,3 @@
+MoveToTable ( b1, b2 )
+Move ( b2, Table, b3 )
+Move ( b1, Table, b2 )

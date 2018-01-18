@@ -1,0 +1,19 @@
+operator: move (Rocket ?r, Place ?from, Place ?to)
+?from != ?to
+[At (?r, ?from) & HasFuel (?r)]
+[At (?r, ?to)]
+[At (?r, ?from) & HasFuel (?r)]
+
+operator: unload (Rocket ?r, Place ?p, Cargo ?c)
+true
+[At (?r, ?p) & In (?c, ?r)]
+[At (?c, ?p)]
+[In (?c, ?r)]
+
+operator: load (Rocket ?r, Place ?p, Cargo ?c)
+true
+[At (?r, ?p) & At (?c, ?p)]
+[In (?c, ?r)]
+[At (?c, ?p)]
+
+

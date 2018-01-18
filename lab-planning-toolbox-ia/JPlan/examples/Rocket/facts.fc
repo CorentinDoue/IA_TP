@@ -1,0 +1,10 @@
+objects:
+ Cargo (Ax);
+ Cargo (Bx);
+ Rocket (Rx);
+ Place (Lx);
+ Place (Px);
+
+init: At (Ax, Lx) & At (Bx, Lx) & At (Rx, Lx) & HasFuel (Rx)
+
+goal: At (Ax, Px) & At (Bx, Px) 

@@ -1,0 +1,24 @@
+operator: Pickup (Block ?ob)
+true
+[Clear (?ob) & OnTable(?ob)]
+[Holding(?ob)]
+[Clear (?ob) & OnTable(?ob)]
+
+operator: Putdown (Block ?ob)
+true
+[Holding (?ob)]
+[Clear (?ob) & OnTable (?ob)]
+[Holding (?ob)]
+
+operator: Stack (Block ?ob, Block ?underob)
+true
+[Clear (?underob) & Holding (?ob)]
+[Clear (?ob) & On (?ob, ?underob)]
+[Clear (?underob) & Holding (?ob)]
+
+operator: Unstack (Block ?ob, Block ?underob)
+true
+[On (?ob, ?underob) & Clear (?ob)]
+[Holding (?ob) & Clear (?underob)]
+[On (?ob, ?underob) & Clear (?ob)]
+                      

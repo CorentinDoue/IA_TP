@@ -1,0 +1,66 @@
+<object-stream>
+<org.drools.audit.event.ActivationLogEvent>
+  <type>4</type>
+  <activationId>Warn when we have Songs by Pandit Jasraj [2, 1]</activationId>
+  <rule>Warn when we have Songs by Pandit Jasraj</rule>
+  <declarations>$artists=[Artist {name= &apos;Pandit&apos;, lastname= &apos;Jasraj&apos;}](1); $song=Song {title= &apos;SaReGaMa&apos;, genre= &apos;CLASSICAL&apos;, duration= &apos;2569&apos;, artists= [Artist {name= &apos;Pandit&apos;, lastname= &apos;Jasraj&apos;}]}(1)</declarations>
+</org.drools.audit.event.ActivationLogEvent>
+<org.drools.audit.event.ObjectLogEvent>
+  <type>1</type>
+  <factId>1</factId>
+  <objectToString>Song {title= &apos;SaReGaMa&apos;, genre= &apos;CLASSICAL&apos;, duration= &apos;2569&apos;, artists= [Artist {name= &apos;Pandit&apos;, lastname= &apos;Jasraj&apos;}]}</objectToString>
+</org.drools.audit.event.ObjectLogEvent>
+<org.drools.audit.event.ActivationLogEvent>
+  <type>6</type>
+  <activationId>Warn when we have Songs by Pandit Jasraj [2, 1]</activationId>
+  <rule>Warn when we have Songs by Pandit Jasraj</rule>
+  <declarations>$artists=[Artist {name= &apos;Pandit&apos;, lastname= &apos;Jasraj&apos;}](1); $song=Song {title= &apos;SaReGaMa&apos;, genre= &apos;CLASSICAL&apos;, duration= &apos;2569&apos;, artists= [Artist {name= &apos;Pandit&apos;, lastname= &apos;Jasraj&apos;}]}(1)</declarations>
+</org.drools.audit.event.ActivationLogEvent>
+<org.drools.audit.event.ActivationLogEvent>
+  <type>7</type>
+  <activationId>Warn when we have Songs by Pandit Jasraj [2, 1]</activationId>
+  <rule>Warn when we have Songs by Pandit Jasraj</rule>
+  <declarations>$artists=[Artist {name= &apos;Pandit&apos;, lastname= &apos;Jasraj&apos;}](1); $song=Song {title= &apos;SaReGaMa&apos;, genre= &apos;CLASSICAL&apos;, duration= &apos;2569&apos;, artists= [Artist {name= &apos;Pandit&apos;, lastname= &apos;Jasraj&apos;}]}(1)</declarations>
+</org.drools.audit.event.ActivationLogEvent>
+<org.drools.audit.event.ActivationLogEvent>
+  <type>4</type>
+  <activationId>Warn when we have a Playlist with more than one song [3]</activationId>
+  <rule>Warn when we have a Playlist with more than one song</rule>
+  <declarations></declarations>
+</org.drools.audit.event.ActivationLogEvent>
+<org.drools.audit.event.ActivationLogEvent>
+  <type>4</type>
+  <activationId>Warn when we have a POP songs inside a playlist [4, 3]</activationId>
+  <rule>Warn when we have a POP songs inside a playlist</rule>
+  <declarations>$songs=[Song {title= &apos;Aa jaa meri gaadi main baith jaa&apos;, genre= &apos;POP&apos;, duration= &apos;7654&apos;, artists= [Artist {name= &apos;Baba&apos;, lastname= &apos;Sehgal&apos;}]}, Song {title= &apos;SaReGaMa&apos;, genre= &apos;CLASSICAL&apos;, duration= &apos;2569&apos;, artists= [Artist {name= &apos;Pandit&apos;, lastname= &apos;Jasraj&apos;}]}](3); $playlist=Playlist {name= &apos;My favorite songs&apos;, songs= [Song {title= &apos;Aa jaa meri gaadi main baith jaa&apos;, genre= &apos;POP&apos;, duration= &apos;7654&apos;, artists= [Artist {name= &apos;Baba&apos;, lastname= &apos;Sehgal&apos;}]}, Song {title= &apos;SaReGaMa&apos;, genre= &apos;CLASSICAL&apos;, duration= &apos;2569&apos;, artists= [Artist {name= &apos;Pandit&apos;, lastname= &apos;Jasraj&apos;}]}]}(3); $song=Song {title= &apos;Aa jaa meri gaadi main baith jaa&apos;, genre= &apos;POP&apos;, duration= &apos;7654&apos;, artists= [Artist {name= &apos;Baba&apos;, lastname= &apos;Sehgal&apos;}]}(4)</declarations>
+</org.drools.audit.event.ActivationLogEvent>
+<org.drools.audit.event.ObjectLogEvent>
+  <type>1</type>
+  <factId>3</factId>
+  <objectToString>Playlist {name= &apos;My favorite songs&apos;, songs= [Song {title= &apos;Aa jaa meri gaadi main baith jaa&apos;, genre= &apos;POP&apos;, duration= &apos;7654&apos;, artists= [Artist {name= &apos;Baba&apos;, lastname= &apos;Sehgal&apos;}]}, Song {title= &apos;SaReGaMa&apos;, genre= &apos;CLASSICAL&apos;, duration= &apos;2569&apos;, artists= [Artist {name= &apos;Pandit&apos;, lastname= &apos;Jasraj&apos;}]}]}</objectToString>
+</org.drools.audit.event.ObjectLogEvent>
+<org.drools.audit.event.ActivationLogEvent>
+  <type>6</type>
+  <activationId>Warn when we have a POP songs inside a playlist [4, 3]</activationId>
+  <rule>Warn when we have a POP songs inside a playlist</rule>
+  <declarations>$songs=[Song {title= &apos;Aa jaa meri gaadi main baith jaa&apos;, genre= &apos;POP&apos;, duration= &apos;7654&apos;, artists= [Artist {name= &apos;Baba&apos;, lastname= &apos;Sehgal&apos;}]}, Song {title= &apos;SaReGaMa&apos;, genre= &apos;CLASSICAL&apos;, duration= &apos;2569&apos;, artists= [Artist {name= &apos;Pandit&apos;, lastname= &apos;Jasraj&apos;}]}](3); $playlist=Playlist {name= &apos;My favorite songs&apos;, songs= [Song {title= &apos;Aa jaa meri gaadi main baith jaa&apos;, genre= &apos;POP&apos;, duration= &apos;7654&apos;, artists= [Artist {name= &apos;Baba&apos;, lastname= &apos;Sehgal&apos;}]}, Song {title= &apos;SaReGaMa&apos;, genre= &apos;CLASSICAL&apos;, duration= &apos;2569&apos;, artists= [Artist {name= &apos;Pandit&apos;, lastname= &apos;Jasraj&apos;}]}]}(3); $song=Song {title= &apos;Aa jaa meri gaadi main baith jaa&apos;, genre= &apos;POP&apos;, duration= &apos;7654&apos;, artists= [Artist {name= &apos;Baba&apos;, lastname= &apos;Sehgal&apos;}]}(4)</declarations>
+</org.drools.audit.event.ActivationLogEvent>
+<org.drools.audit.event.ActivationLogEvent>
+  <type>7</type>
+  <activationId>Warn when we have a POP songs inside a playlist [4, 3]</activationId>
+  <rule>Warn when we have a POP songs inside a playlist</rule>
+  <declarations>$songs=[Song {title= &apos;Aa jaa meri gaadi main baith jaa&apos;, genre= &apos;POP&apos;, duration= &apos;7654&apos;, artists= [Artist {name= &apos;Baba&apos;, lastname= &apos;Sehgal&apos;}]}, Song {title= &apos;SaReGaMa&apos;, genre= &apos;CLASSICAL&apos;, duration= &apos;2569&apos;, artists= [Artist {name= &apos;Pandit&apos;, lastname= &apos;Jasraj&apos;}]}](3); $playlist=Playlist {name= &apos;My favorite songs&apos;, songs= [Song {title= &apos;Aa jaa meri gaadi main baith jaa&apos;, genre= &apos;POP&apos;, duration= &apos;7654&apos;, artists= [Artist {name= &apos;Baba&apos;, lastname= &apos;Sehgal&apos;}]}, Song {title= &apos;SaReGaMa&apos;, genre= &apos;CLASSICAL&apos;, duration= &apos;2569&apos;, artists= [Artist {name= &apos;Pandit&apos;, lastname= &apos;Jasraj&apos;}]}]}(3); $song=Song {title= &apos;Aa jaa meri gaadi main baith jaa&apos;, genre= &apos;POP&apos;, duration= &apos;7654&apos;, artists= [Artist {name= &apos;Baba&apos;, lastname= &apos;Sehgal&apos;}]}(4)</declarations>
+</org.drools.audit.event.ActivationLogEvent>
+<org.drools.audit.event.ActivationLogEvent>
+  <type>6</type>
+  <activationId>Warn when we have a Playlist with more than one song [3]</activationId>
+  <rule>Warn when we have a Playlist with more than one song</rule>
+  <declarations></declarations>
+</org.drools.audit.event.ActivationLogEvent>
+<org.drools.audit.event.ActivationLogEvent>
+  <type>7</type>
+  <activationId>Warn when we have a Playlist with more than one song [3]</activationId>
+  <rule>Warn when we have a Playlist with more than one song</rule>
+  <declarations></declarations>
+</org.drools.audit.event.ActivationLogEvent>
+</object-stream>

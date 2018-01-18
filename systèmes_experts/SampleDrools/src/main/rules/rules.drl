@@ -1,0 +1,43 @@
+#created on: Jan 25, 2016
+package org.howtodoitinjava
+// Unique namespace for the rules(Similar to java package) Refer package section in the tutorial
+
+#All the import classes uses in the DRL file. Similar to Java Import statements
+#Refer to Import section in the tutorial
+
+import com.sample.*;
+import function com.sample.Helper.helper;
+import function com.sample.Helper.help;
+
+#declare any global variables here
+#If any global variables are to be used in Drools Rule file then need to mention here.
+
+
+rule "Warn when we have a Playlist with more than one song"
+	when
+		Playlist(songs.size > 1)
+	then
+		System.out.println("We have found a Playlist with more than one song");
+end
+
+
+rule "Warn when we have a POP songs inside a playlist"
+	when
+		$playlist: Playlist($songs: songs)
+		$song: Song(genre == Song.Genre.POP) from $songs
+	then
+		System.out.println("We have found a POP Song ("+$song.getTitle()+") inside a playlist ("+$playlist.getName()+")");
+		Utility.writeHello($song.getTitle());
+		help(drools,"added info");
+		
+end
+
+rule "Warn when we have Songs by Pandit Jasraj"
+	when		
+		$song: Song($artists: artists)
+                Artist(name == "Pandit", lastname == "Jasraj") from $artists
+	then
+		System.out.println("We have found a Song by Pandit Jasraj: "+$song);
+		helper(drools);
+end
+

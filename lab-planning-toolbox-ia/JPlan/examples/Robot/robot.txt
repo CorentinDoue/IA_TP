@@ -1,0 +1,12 @@
+operator: Paint (Section ?sec, Color ?clr)
+true
+[ CurrentColor (?clr)]
+[ Painted (?sec, ?clr) ]
+true
+
+operator: ChangeColor (Color ?old, Color ?new)
+?old != ?new
+[ CurrentColor (?old) ]
+[ CurrentColor (?new) ]
+[ CurrentColor (?old) ]
+

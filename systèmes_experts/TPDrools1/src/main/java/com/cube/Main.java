@@ -15,12 +15,18 @@ public class Main {
         	KieSession kSession = kContainer.newKieSession("ksession-rulesCube");
 
 			
-			Cube c1 = new Cube (12,"c1");
-			Cube c2 = new Cube (3, "c2");
+			Cube c1 = new Cube (1,"c1");
+			Cube c2 = new Cube (2, "c2");
+			Cube c3 = new Cube (3, "c3");
+			Cube c4 = new Cube (4, "c4");
+			Cube c5 = new Cube (5, "c5");
 		
 			
 			kSession.insert(c1);
 			kSession.insert(c2);
+			kSession.insert(c3);
+			kSession.insert(c4);
+			kSession.insert(c5);
 
 			
 	         for (Object fc : kSession.getObjects()){	        

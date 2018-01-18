@@ -1,0 +1,12 @@
+2.a
+Initial state :
+Robby is in the room A, it have two grippers (left and right) which are both empty. There are also two balls (Ball1 and Ball2) which are also in the room A.
+Final state:
+The two balls are in the room B.
+
+2.b
+There are 3 possible actions : 
+- move : if robby is in a room, it can go one other.
+- pick : if robby and a ball are in the same room and if a Robby's gripper is empty, then the gripper can pick the ball.
+- drop : if a Robby's gripper carry a ball, then it drop the ball in the room where Robby is.
+
